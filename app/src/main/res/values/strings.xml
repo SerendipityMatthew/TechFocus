@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Tech Focus</string>
+    <string name="bottom_about">Me</string>
+    <string name="bottom_rss_news">News</string>
+    <string name="bottom_article_list">Article</string>
 </resources>

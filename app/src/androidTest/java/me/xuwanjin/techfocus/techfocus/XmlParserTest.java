@@ -1,7 +1,5 @@
 package me.xuwanjin.techfocus.techfocus;
 
-import me.xuwanjin.techfocus.techfocus.xmlparser.XmlParser;
-
 /**
  * Created by xuwanjin on 3/18/17.
  */
