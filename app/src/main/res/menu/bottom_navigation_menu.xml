@@ -3,17 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/article_list"
+        android:id="@+id/article_list_navig"
         android:enabled="true"
         android:icon="@mipmap/ic_launcher"
         android:title="@string/bottom_article_list" />
     <item
-        android:id="@+id/rss_news"
+        android:id="@+id/rss_news_navig"
         android:enabled="true"
         android:icon="@mipmap/ic_launcher"
         android:title="@string/bottom_rss_news" />
     <item
-        android:id="@+id/action_me"
+        android:id="@+id/action_me_navig"
         android:enabled="true"
         android:icon="@mipmap/ic_launcher"
         android:title="@string/bottom_about"
