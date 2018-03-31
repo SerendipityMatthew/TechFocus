@@ -9,30 +9,37 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
 
-public class ArticleAdapter extends ArrayAdapter<Article> {
+public class ArticleAdapter extends BaseAdapter {
     public static final String TAG = "ArticleAdapter";
-    private int resourceId = 0;
+    private List<Article> articleList;
+    private Context mContext;
+    private LayoutInflater inflater;
 
-    public ArticleAdapter(@NonNull Context context, int resource, List<Article> articleList) {
-        super(context, resource);
-        resourceId = resource;
-
+    public ArticleAdapter() {
     }
+
+    public ArticleAdapter(List<Article> articleList, Context context) {
+        this.mContext = context;
+        this.articleList = articleList;
+        this.inflater = LayoutInflater.from(context);
+    }
+
 
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         Log.d(TAG, "getView: ");
         Article article = getItem(position);
-        View view;
+        View view = null;
         ViewHolder viewHolder;
         if (convertView == null) {
-            view = LayoutInflater.from(getContext()).inflate(R.layout.favorite_article_list, null);
+            view = inflater.inflate(R.layout.favorite_article_list, null);
             viewHolder = new ViewHolder();
             viewHolder.articleImage = (ImageView) view.findViewById(R.id.article_image);
             viewHolder.articleSummary = (TextView) view.findViewById(R.id.article_summary);
@@ -41,25 +48,27 @@ public class ArticleAdapter extends ArrayAdapter<Article> {
             view = convertView;
             viewHolder = (ViewHolder) view.getTag();
         }
-        viewHolder.articleImage.setImageResource(R.mipmap.ic_launcher);
-        viewHolder.articleSummary.setText(article.getArticleSummary());
-        return super.getView(position, convertView, parent);
+        if (article != null && article.getArticleSummary() != null) {
+            viewHolder.articleSummary.setText(article.getArticleSummary());
+        }
+        return view;
+    }
+
+    @Override
+    public int getCount() {
+        return articleList == null ? 0 : articleList.size();
     }
 
     @Nullable
     @Override
     public Article getItem(int position) {
-        return super.getItem(position);
+        return articleList.get(position);
     }
 
-    @Override
-    public int getPosition(@Nullable Article item) {
-        return super.getPosition(item);
-    }
 
     @Override
     public long getItemId(int position) {
-        return super.getItemId(position);
+        return position;
     }
 
     class ViewHolder {

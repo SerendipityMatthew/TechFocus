@@ -4,6 +4,5 @@
     <string name="bottom_rss_news">News</string>
     <string name="bottom_article_list">Article</string>
     <string name="article_text_sample">     The overlapping of fonts, graphics and colors cannot only make UI designs more eye-catching and distinctive,
-        but also create a sense of space.
-        And that’s also why overlapping of different mobile app UI design elements has been widely used by designers in recent years.</string>
+        but also create a sense of space.</string>
 </resources>
