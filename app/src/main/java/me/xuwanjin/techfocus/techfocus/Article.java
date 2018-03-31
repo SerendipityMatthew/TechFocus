@@ -1,7 +1,6 @@
 package me.xuwanjin.techfocus.techfocus;
 
 import android.graphics.drawable.Drawable;
-import android.media.Image;
 
 import java.net.URL;
 import java.util.List;
