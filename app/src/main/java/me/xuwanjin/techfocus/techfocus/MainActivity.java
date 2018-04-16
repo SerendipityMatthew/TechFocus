@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -35,6 +36,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         meNavigationItem = (BottomNavigationItemView) findViewById(R.id.action_me_navig);
         newsNavigationItem = (BottomNavigationItemView) findViewById(R.id.rss_news_navig);
         articleNavigationItem.setOnClickListener(this);
+        meNavigationItem.setOnClickListener(this);
+        newsNavigationItem.setOnClickListener(this);
 
 
     }
@@ -48,28 +51,42 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             articleList.add(article);
 
         }
+        viewPager = (ViewPager) findViewById(R.id.main_viewpager);
     }
 
     @Override
     public void onClick(View view) {
         if (view == articleNavigationItem) {
-            Toast.makeText(this, "xxxxxxx", Toast.LENGTH_SHORT).show();
             LayoutInflater layoutInflater = getLayoutInflater();
             View mainPageView = layoutInflater.inflate(R.layout.main_view_pager_one, null, false);
             List<View> viewList = new ArrayList<>();
             viewList.add(mainPageView);
             BaseAdapter baseAdapter =
                     new ArticleAdapter(articleList, this);
-
-            viewPager = (ViewPager) findViewById(R.id.main_viewpager);
             MainViewPager mainViewPager = new MainViewPager(viewList);
             articleListView = (ListView) mainPageView.findViewById(R.id.article_list);
             articleListView.setAdapter(baseAdapter);
+            articleListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                    Article article = (Article) adapterView.getItemAtPosition(position);
+                    if(article != null && article.getArticleSummary() != null){
+                        Toast.makeText(getBaseContext(), article.getArticleSummary(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
             viewPager.setAdapter(mainViewPager);
-        }else if(view == meNavigationItem){
-
-        }else if (view == newsNavigationItem){
-
+            Toast.makeText(this, "articleNavigationItem", Toast.LENGTH_SHORT).show();
+        } else if (view == meNavigationItem) {
+            if (viewPager != null) {
+                viewPager.setAdapter(null);
+            }
+            Toast.makeText(getApplication(), "meNavigationItem", Toast.LENGTH_SHORT).show();
+        } else if (view == newsNavigationItem) {
+            if (viewPager != null) {
+                viewPager.setAdapter(null);
+            }
+            Toast.makeText(getApplication(), "newsNavigationItem", Toast.LENGTH_SHORT).show();
         }
     }
 }

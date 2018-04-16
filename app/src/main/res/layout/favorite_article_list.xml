@@ -9,7 +9,6 @@
         android:id="@+id/article_image"
         android:layout_width="wrap_content"
         android:layout_height="100dp"
-        android:background="@color/colorAccent"
         android:src="@mipmap/ic_launcher" />
 
     <TextView

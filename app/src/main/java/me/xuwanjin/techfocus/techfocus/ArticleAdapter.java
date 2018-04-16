@@ -69,6 +69,7 @@ public class ArticleAdapter extends BaseAdapter {
         return position;
     }
 
+
     class ViewHolder {
         ImageView articleImage;
         TextView articleSummary;
