@@ -10,7 +10,6 @@ public class MainViewPager extends PagerAdapter {
     private List<View> viewList = null;
 
     public MainViewPager() {
-
     }
 
     public MainViewPager(List<View> viewList) {

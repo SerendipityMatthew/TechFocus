@@ -1,6 +1,7 @@
 package me.xuwanjin.techfocus.techfocus;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.v4.view.ViewPager;
@@ -73,6 +74,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     if(article != null && article.getArticleSummary() != null){
                         Toast.makeText(getBaseContext(), article.getArticleSummary(), Toast.LENGTH_SHORT).show();
                     }
+                    Intent intent = new Intent();
+                    intent.setClass(getApplicationContext(), ArticleReaderActivity.class);
+                    startActivity(intent);
                 }
             });
             viewPager.setAdapter(mainViewPager);
